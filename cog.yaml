@@ -3,4 +3,4 @@ build:
   python_packages:
     - "git+https://github.com/eldrin/text-concept-similarity@main"
 predict: "scripts/predict.py:Predictor"
-image: "jaehun.j.kim/text-concept-similarity/t2c"
+image: "r8.im/eldrin/text-concept-similarity"
