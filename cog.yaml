@@ -1,0 +1,6 @@
+build:
+  python_version: "3.9"
+  python_packages:
+    - "git+https://github.com/eldrin/text-concept-similarity@main"
+predict: "scripts/predict.py:Predictor"
+image: "jaehun.j.kim/text-concept-similarity/t2c"

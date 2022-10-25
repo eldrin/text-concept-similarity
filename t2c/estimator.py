@@ -159,6 +159,7 @@ class WordCount(BaseText2ConceptEstimator):
         self,
         dictionary: dict[str, set[str]],
         tokenizer: Tokenizer,
+        ipsatize: bool = True,
         *args,
         **kwargs
     ):
@@ -166,6 +167,7 @@ class WordCount(BaseText2ConceptEstimator):
         """
         super().__init__(dictionary)
         self.tokenizer = tokenizer
+        self.ipsatize = ipsatize
 
     def init_dictionary(
         self,
@@ -176,6 +178,11 @@ class WordCount(BaseText2ConceptEstimator):
         self.dictionary_inv = dict(chain.from_iterable([
             [(vv, k) for vv in v] for k, v in dictionary.items()
         ]))
+
+    def _preproc(self, word: str) -> str:
+        """
+        """
+        return word.replace('Ġ', '').replace(' ', '')
 
     def predict_scores(
         self,
@@ -192,10 +199,17 @@ class WordCount(BaseText2ConceptEstimator):
             tf = Counter(tok.tokens)
 
             doc_value_sim = {k:0 for k in self.dictionary.keys()}
+            total_count = 0
             for word, count in tf.items():
-                concept = self.dictionary_inv.get(word)
+                concept = self.dictionary_inv.get(self._preproc(word))
                 if concept is not None:
                     doc_value_sim[concept] += count
+                    total_count += count
+
+            if self.ipsatize:
+                for concept in doc_value_sim.keys():
+                    doc_value_sim[concept] -= total_count
+
             value_scores.append(doc_value_sim)
         return value_scores
 

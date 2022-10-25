@@ -1,4 +1,4 @@
-from typing import Optional, Literal
+from typing import Optional
 import logging
 
 import numpy as np
@@ -28,7 +28,7 @@ def extract(
     binary: bool=False,
     dict_fn: Optional[str]=None,
     tokenizer_fn: Optional[str]=None,
-    normalization: Literal[None, 'zscore', 'softmax', 'l2'] = None
+    normalization: Optional[str] = None
 ) -> None:
     """ Extracting estimated concept relevance scores based on text and concept dictionary
 
