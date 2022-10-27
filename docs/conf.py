@@ -22,6 +22,8 @@ release = '0.0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    # 'sphinx.ext.imgmath',
+    'sphinx.ext.mathjax',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'myst_parser'
@@ -30,6 +32,7 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+# imgmath_latex_preamble = r'\usepackage{array}'
 
 
 # -- Options for HTML output -------------------------------------------------
