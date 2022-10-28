@@ -433,7 +433,17 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         self,
         token_ids: npt.NDArray[np.int64]
     ) -> npt.NDArray[np.float64]:
-        """
+        """ fetch IDF values from internal idf vector
+
+        it takes "indices" of the term through the tokenizer shipped with
+        the embedding (word_embs member of the object).
+
+        Args:
+            token_ids: an array of indices corresponding to the terms of which
+                       the IDFs to be retrieved.
+
+        Returns:
+            IDF values corresponding to the input indices.
         """
         return self.idf[token_ids]
 
@@ -443,7 +453,24 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
     ) -> tuple[npt.NDArray[np.int64],
                npt.NDArray[np.int64],
                list[Union[str, bytes]]]:
-        """
+        """ determine and return the healthiness and token ids
+
+        it first determines whether the tokens exist in the embedding.
+        if it does, it returns the corresponding token ids (int) and
+        its existence in the embedding (int indices of tokens in the tokenizer).
+
+        As it can take both single term (str) or list of terms, it returns
+        :obj:`numpy.ndarray` for both cases for generality.
+
+        Finally, it also returns the terms themselves wrapped by the
+        :obj:`numpy.ndarray`.
+
+        Args:
+            terms: input single or list of terms
+
+        Returns:
+            it returns the tuple of: 1) array of indices of terms that exist,
+            2) array of tokens ids that exist, and 3) array-wrapped terms
         """
         # get terms and tokens that are "healthy"
         terms_ary = np.asarray(terms)
@@ -464,7 +491,15 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         self,
         terms_ary: list[Union[str, bytes]]
     ) -> npt.NDArray[np.float64]:
-        """
+        """ fetch embeddings from the array of terms
+
+        it draws the embeddings corresponding to the list of terms.
+
+        Args:
+            terms: (list of) term(s) whose embedding is to be drawn
+
+        Returns:
+            embedding vectors corresponding to the terms.
         """
         # get embeddings
         if len(terms_ary) > 0:
@@ -484,7 +519,16 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
     ) -> tuple[npt.NDArray[np.float64],
                npt.NDArray[np.float64],
                npt.NDArray[np.int64]]:
-        """
+        """ get embeddings and corresponding IDFs
+
+        it draws the embedding vectors and corresponding IDFs from the
+        (list of) term(s)
+
+        Args:
+            terms: (list of) term(s) whose embedding is to be drawn
+
+        Returns:
+            embedding vectors and IDFs corresponding to the terms
         """
         if isinstance(terms, str):
             return self._get_embs_idf([terms])

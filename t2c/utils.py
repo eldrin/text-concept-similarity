@@ -103,7 +103,25 @@ def normalize_scores(
 def load_idf(
     path: Optional[str] = None
 ) -> dict[str, float]:
-    """
+    """ loads IDF values
+
+    it loads the IDF values. if no specific filename is given, the default IDF
+    values from the package is loaded instaed.
+
+    A custom IDF can be given. A text file where each row has the term - idf
+    pair delimited by the tabbed space can be parsed and used for the further
+    procedure.
+
+    .. code-block:: text
+        apple\t11.1251
+        pear\t12.1205
+        ...
+
+    Args:
+        path: filename to the IDF values for terms.
+
+    Returns:
+        dictionary contains IDF values per term.
     """
     if path is None:
         path = default_idf()
@@ -122,7 +140,16 @@ def load_idf(
 
 
 def load_tokenizer(path: Optional[str]=None) -> Tokenizer:
-    """
+    """ loads pretrained tokenizer.
+
+    it loads the pretrained tokenizer configurations. if no specific filename
+    is given, the default tokenizer is loaded instead.
+
+    Args:
+        path: filename to the pretrained tokenizer dump file.
+
+    Returns:
+        :obj:`tokenizers.Tokenizer` loaded with pretrained configuration.
     """
     if path is None:
         logger.warning('tokenizer is not given. falling back to the default '
@@ -141,7 +168,15 @@ def load_tokenizer(path: Optional[str]=None) -> Tokenizer:
 def load_dictionary(
     path: str
 ) -> dict[str, set[str]]:
-    """
+    """ load dictionary file.
+
+    It just reads the custom dictionary file in the json format.
+
+    Args:
+        path: filename to the custom dictionary filename
+
+    Returns:
+        dictionary of concept-words.
     """
     with Path(path).open('r') as fp:
         dic = {k:set(v) for k, v in json.load(fp).items()}
@@ -153,7 +188,17 @@ def _fetch(
     path: Path,
     chunk_size: int=128
 ) -> str:
-    """
+    """ fetch files from internet.
+
+    a simple routine to fetch the small file from the url
+
+    Args:
+        url: target url
+        path: output directory
+        chunk_size: integer chunk size of the binary that is going to be fetched
+
+    Returns:
+        filename where the file is downloaded.
     """
     # check if it's already there
     if path.exists():
@@ -176,12 +221,21 @@ def _fetch_ponizovskiy(
 
     it fetches the personal value dictionary developed by Ponizovskiy et al. (2020)
 
+    Args:
+        url: url of the personal value dictionary from Ponizovskiy et al.
+             the default is set as their OSF entry.
     """
     _fetch(url, PONIZOVSKIY_PATH)
 
 
 def load_ponizovskiy() -> dict[str, set[str]]:
-    """
+    """ load personal value dictionary from Ponizovskiy et al.
+
+    it loads the personal value dictionary from Ponizovskiy et al. It is used
+    as the default dictionary if no custom dictionary is given.
+
+    Returns:
+        the personal value dictionary developed by Ponizovskiy et al. (2020)
     """
     body_starts_at = 12
 

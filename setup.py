@@ -33,7 +33,7 @@ setup(
     install_requires=requirements(),
     test_suite='tests',
     entry_points={
-        'console_scripts': ['t2csim=t2c.__main__:main',
+        'console_scripts': ['t2csim=t2c.extract:main',
                             'gensim2hdf=t2c.word_embeddings:main'],
     },
     zip_safe=False
