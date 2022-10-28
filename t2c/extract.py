@@ -22,6 +22,7 @@ def extract(
     input_fn: str,
     out_fn: str,
     word_embs_name_or_path: str,
+    alpha: float = 0.5,
     idf_fn: Optional[str] = None,
     is_gensim_model: bool=True,
     is_glove: bool=False,
@@ -60,6 +61,8 @@ def extract(
                 or HDF file compatible with
                 :obj:`~t2c.word_embeddings.Word2VecLookup` or
                 :obj:`gloves.model.GloVe`.
+        alpha: weighting factor for the `concept representative term` over
+               the other concept terms.
         idf_fn: filename contains the inverse document frequency (IDF) of each
                 tokens. If not given, the default IDF is used. The custom IDF
                 can be provided as textfile, where each row includes pair of
@@ -124,7 +127,8 @@ def extract(
         # loading estimator
         estimator = WordEmbeddingSimilarity(terms,
                                             word_embs,
-                                            idf)
+                                            idf,
+                                            alpha=alpha)
 
     # load input data (we're expecting a text file whose lines are flattened text of docs)
     new_docs = []

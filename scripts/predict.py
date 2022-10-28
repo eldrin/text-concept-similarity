@@ -65,7 +65,12 @@ class Predictor(BasePredictor):
                                  default=None),
         normalization: str = Input(description="normalization method",
                                    choices=['zscore', 'softmax', 'l2', 'null'],
-                                   default=None)
+                                   default=None),
+        alpha: float = Input(description=(
+                                "weighting factor for the `concept representative term` "
+                                "over the other concept terms. It is relevant only for "
+                                "`WordEmbeddingSimilarity`."),
+                             default=0.5, ge=0., le=1.)
     ) -> Path:
         """ Run a single prediction on the model """
         # gen output name from input name? or temp filename?
@@ -84,6 +89,7 @@ class Predictor(BasePredictor):
             WORD_EMBEDDING_PATHS[word_embs],
             dict_fn = dic,
             normalization = norm,
+            alpha = alpha,
             **WORD_EMBEDDING_FLAGS[emb_type]
         )
 
