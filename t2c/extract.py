@@ -32,24 +32,21 @@ def extract(
 ) -> None:
     """ Extracting estimated concept relevance scores based on text and concept dictionary
 
-    - may be 5x ~ 10x faster if everything implemented in numba or cython
-    - some more optimization for current form also should be possible
+    #. may be 5x ~ 10x faster if everything implemented in numba or cython
+    #. some more optimization for current form also should be possible
         1. multi-processing over songs
         2. caching word to word distance (or pre-compute all possible pairs)
         3. better vectorization (or plus GPU computation)
 
-    - three normalization method considered
+    #. three normalization method considered
         1. None: literally do nothing
         2. 'zscore': standard scaling
-        3. 'softmax': applying softmax after z-scoring. useful when
-                      the relative difference of score within document is more important
-                      then the distribution per value variable. (it makes the per value
-                      distribution inconsistent, while comparison within document more clear)
-
-    - IDF can be applied in 3 ways:
-        1. 'both': applied both on the value words and text tokens (default)
-        2. 'text': applied only to the input text tokens
-        3. 'value': applied only to the value words
+        3. 'l2': L-2 normalization. it makes the scores per row unit vector.
+        4. 'softmax':
+            applying softmax after z-scoring. useful when
+            the relative difference of score within document is more important
+            then the distribution per value variable. (it makes the per value
+            distribution inconsistent, while comparison within document more clear)
 
     Args:
         input_fn: filename for the input text file. it expects one text per
@@ -80,11 +77,10 @@ def extract(
 
                  .. code-block:: json
 
-                 {
-                    "concept1": ["concept1_term1", "concept1_term2", ...],
-                    "concept2": ["concept2_term1", "concept2_term2", ...],
-                    ...
-                 }
+                     {
+                        "concept1": ["concept1_term1", "concept1_term2"],
+                        "concept2": ["concept2_term1", "concept2_term2"]
+                     }
 
         tokenizer_fn: filename for the pre-trained :obj:`~tokenizers.Tokenizer`.
                       if not given, default tokenizer shipped with the package
@@ -93,7 +89,7 @@ def extract(
                 selects the normalization method. Refer
                 :obj:`~t2c.utils.normalize_scores' for details.
 
-    .. _gensim data: https://github.com/RaRe-Technologies/gensim-data#available-data
+    .. _gensim-data: https://github.com/RaRe-Technologies/gensim-data#available-data
     .. _glove format: https://github.com/stanfordnlp/GloVe
     .. _Ponizovskiy et al.: https://osf.io/vt8nf/?view_only=
 

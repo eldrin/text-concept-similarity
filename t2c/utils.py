@@ -113,6 +113,7 @@ def load_idf(
     procedure.
 
     .. code-block:: text
+
         apple\t11.1251
         pear\t12.1205
         ...

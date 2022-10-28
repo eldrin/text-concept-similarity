@@ -1,5 +1,5 @@
 from cog import BasePredictor, Input, Path
-from t2c.__main__ import extract
+from t2c.extract import extract
 
 
 WORD_EMBEDDING_PATHS = {
