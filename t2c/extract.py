@@ -62,7 +62,8 @@ def extract(
                 :obj:`~t2c.word_embeddings.Word2VecLookup` or
                 :obj:`gloves.model.GloVe`.
         alpha: weighting factor for the `concept representative term` over
-               the other concept terms.
+               the other concept terms. It is relevant only for
+               :obj:~t2c.estimator.WordEmbeddingSimilarity`.
         idf_fn: filename contains the inverse document frequency (IDF) of each
                 tokens. If not given, the default IDF is used. The custom IDF
                 can be provided as textfile, where each row includes pair of

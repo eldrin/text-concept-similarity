@@ -48,7 +48,8 @@ WORD_EMBEDDING_FLAGS = {
         'is_gensim_model': False,
         'is_glove': True,
         'binary': True
-    }
+    },
+    'wordcount': {}  # it doesn't need any of these setup
 }
 
 

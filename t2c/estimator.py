@@ -43,7 +43,7 @@ def weight_vector(
 ) -> npt.NDArray[np.float64]:
     """ weight the vectors with given weight values.
 
-    It multiplies the weight values to each value. If first dimension of the weight
+    it multiplies the weight values to each value. If first dimension of the weight
      is given differently to the vectors, it broadcast.
 
     Args:
@@ -194,6 +194,30 @@ class WordCount(BaseText2ConceptEstimator):
     concepts. Specifically, it is computed by subtracting the frequency of
     all terms included in the dictionary from the frequencies of each concept.
     (i.e., the first equation above.)
+
+    Example::
+
+        from t2c.estimator import WordCount
+        from t2c.utils import (load_ponizovskiy,
+                               load_tokenizer)
+
+        # load default personal value dictionary
+        dic = load_ponizovskiy()
+
+        # load default tokenizer
+        tok = load_tokenizer()
+
+        inp = [
+            "There is nothing either good or bad, but thinking makes it so.",
+            ...
+        ]
+
+        # instantiate
+        est = WordCount(dic, tok, ipsatize=True)
+
+        # predict concept scores
+        scores = est.predict_scores(inp)
+
 
     Attributes:
         dictionary (dict[str, set[str]]):
@@ -347,6 +371,40 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
     as the `Wikipedia`_ (which is our default). Custom IDF can be given, if
     it's following the format. (i.e., text file where each row contains term
     and IDF value delimited by tab)
+
+    Example::
+
+        from t2c.estimator import WordEmbeddingSimilarity
+        from t2c.word_embeddings import load_word_embs
+        from t2c.utils import (load_ponizovskiy,
+                               load_tokenizer,
+                               load_idf)
+
+        # load default personal value dictionary
+        dic = load_ponizovskiy()
+
+        # load default tokenizer
+        tok = load_tokenizer()
+
+        # load default idfs
+        idf = load_idf()
+
+        # load word embedding
+        word_embs = load_word_embs(word_embs_name_or_path,
+                                   tok)
+
+        inp = [
+            "There is nothing either good or bad, but thinking makes it so.",
+            ...
+        ]
+
+        # instantiate
+        est = WordEmbeddingSimilarity(dic, word_embs, idf,
+                                      alpha=0.5)
+
+        # predict concept scores
+        scores = est.predict_scores(inp)
+
 
     TODO: We probably should revisit here later to generalize
           to apply concept-term weights as some study does
