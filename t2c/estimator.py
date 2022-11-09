@@ -1,4 +1,4 @@
-from typing import Union, Any
+from typing import Union, Any, Optional
 from collections import Counter
 import logging
 from itertools import chain
@@ -329,9 +329,10 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
        \\end{cases}
        \\]
 
-    where :math:`\\mathcal{T}_{c}` denotes the set of terms/words/tokens related
-    to a concept :math:`c`, :math:`t^{\\prime}_{c}` refers the "representative term"
-    of the concept :math:`c` (i.e., *openness* vs. {new, imaginative, untraditional, ...}),
+    where :math:`\\mathcal{T}_{c} := \\{ t \\in c : t \\in \\mathcal{W} \\}`
+    denotes the set of terms/words/tokens related to a concept :math:`c`,
+    :math:`t^{\\prime}_{c}` refers the "representative term" of the concept
+    :math:`c` (i.e., *openness* vs. {new, imaginative, untraditional, ...}),
     :math:`\\mathcal{W}` means the set of words that are supported by the embedding
     :math:`\\mathcal{E}_{\\mathcal{W}} := \\{ e_{t} \\in \\mathcal{E} : t \\in \\mathcal{W}\\ \\wedge \\mathcal{E} \\subset \\mathbb{R}^{r} \\}`.
 
@@ -422,9 +423,14 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
             set of words that are related to the concept.
         word_embs (:obj:`~t2c.word_embeddings.WordEmbedding`):
             word embedding object. see :obj:`~t2c.word_embeddings.WordEmbedding`.
-        idf (:obj:`numpy.typing.NDArray`):
+        idf (:obj:`numpy.typing.NDArray`, optional):
             a float array contains IDF values per token/term/words. Its indices
             is pre-sorted based on the tokenizer embedded in the `word_embs`.
+            if not given, it weights the scores per terms uniformly.
+            (the weight is set to 1)
+        alpha (float):
+            a float ranged within [0, 1] that controls the relative importance of
+            `representative term` when computing the aggregated score
 
     .. _inverse document frequency: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
     .. _Wikipedia: https://www.wikipedia.org
@@ -433,8 +439,8 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         self,
         dictionary: dict[str, set[str]],
         word_embs: WordEmbedding,
-        idf: npt.NDArray[np.float64],
         alpha: float = 0.5,
+        idf: Optional[npt.NDArray[np.float64]] = None,
         *args,
         **kwargs
     ):
@@ -503,7 +509,11 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         Returns:
             IDF values corresponding to the input indices.
         """
-        return self.idf[token_ids]
+        return (
+            np.ones(len(token_ids))
+            if self.idf is None
+            else self.idf[token_ids]
+        )
 
     def __get_healthy_terms(
         self,

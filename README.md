@@ -67,7 +67,7 @@ t2csim \
     --dict_fn=/path/to/dictionary.json
 ```
 
-It expect the input text file contianing text files where each "document" corresponds to each row.
+It expects the input text file contianing text files where each "document" corresponds to each row.
 
 ```text
 this is the first document.

@@ -23,12 +23,13 @@ def extract(
     out_fn: str,
     word_embs_name_or_path: str,
     alpha: float = 0.5,
+    apply_idf: bool = True,
     idf_fn: Optional[str] = None,
-    is_gensim_model: bool=True,
-    is_glove: bool=False,
-    binary: bool=False,
-    dict_fn: Optional[str]=None,
-    tokenizer_fn: Optional[str]=None,
+    is_gensim_model: bool = True,
+    is_glove: bool = False,
+    binary: bool = False,
+    dict_fn: Optional[str] = None,
+    tokenizer_fn: Optional[str] = None,
     normalization: Optional[str] = None
 ) -> None:
     """ Extracting estimated concept relevance scores based on text and concept dictionary
@@ -64,6 +65,8 @@ def extract(
         alpha: weighting factor for the `concept representative term` over
                the other concept terms. It is relevant only for
                :obj:~t2c.estimator.WordEmbeddingSimilarity`.
+        apply_idf: flag that determines whether IDF weighting is applied to the
+                   score aggregation or not.
         idf_fn: filename contains the inverse document frequency (IDF) of each
                 tokens. If not given, the default IDF is used. The custom IDF
                 can be provided as textfile, where each row includes pair of
@@ -100,14 +103,17 @@ def extract(
     """
     # loading tokenizer
     tokenizer = load_tokenizer(path=tokenizer_fn)
-    idf_ = load_idf(idf_fn)
 
     # convert idf into list of values
-    idf = np.zeros((len(idf_),), dtype=np.float64)
-    for token, value in idf_.items():
-        i = tokenizer.token_to_id(token)
-        if i is not None:
-            idf[i] = value
+    if apply_idf:
+        idf_ = load_idf(idf_fn)
+        idf = np.zeros((len(idf_),), dtype=np.float64)
+        for token, value in idf_.items():
+            i = tokenizer.token_to_id(token)
+            if i is not None:
+                idf[i] = value
+    else:
+        idf = None
 
     # load ssvs dictionary
     if dict_fn is None:
@@ -128,8 +134,8 @@ def extract(
         # loading estimator
         estimator = WordEmbeddingSimilarity(terms,
                                             word_embs,
-                                            idf,
-                                            alpha=alpha)
+                                            alpha=alpha,
+                                            idf=idf)
 
     # load input data (we're expecting a text file whose lines are flattened text of docs)
     new_docs = []

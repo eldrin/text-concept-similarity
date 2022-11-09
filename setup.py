@@ -29,7 +29,8 @@ setup(
     author='Jaehun Kim',
     author_email='j.h.kim@tudelft.nl',
     license='MIT',
-    packages=find_packages('.'),
+    packages=find_packages(),
+    include_package_data=True,
     install_requires=requirements(),
     test_suite='tests',
     entry_points={

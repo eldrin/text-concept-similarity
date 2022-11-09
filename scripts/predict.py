@@ -64,6 +64,9 @@ class Predictor(BasePredictor):
         dictionary: Path = Input(description=("json file contains dictionary "
                                         "for the concepts to be estimated"),
                                  default=None),
+        apply_idf: bool = Input(description=("determine whether IDF weighting "
+                                             "is applied or not."),
+                                default=True),
         normalization: str = Input(description="normalization method",
                                    choices=['zscore', 'softmax', 'l2', 'null'],
                                    default=None),
@@ -91,6 +94,7 @@ class Predictor(BasePredictor):
             dict_fn = dic,
             normalization = norm,
             alpha = alpha,
+            apply_idf = apply_idf,
             **WORD_EMBEDDING_FLAGS[emb_type]
         )
 

@@ -1,1 +1,3 @@
 include README.md requirements.txt
+include t2c/data/tokenizer_wikidump20210720.json
+include t2c/data/wikidump20210720_idf.txt
