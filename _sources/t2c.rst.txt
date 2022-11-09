@@ -1,0 +1,53 @@
+t2c package
+===========
+
+Submodules
+----------
+
+t2c.estimator module
+--------------------
+
+.. automodule:: t2c.estimator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+t2c.extract module
+------------------
+
+.. automodule:: t2c.extract
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+t2c.misc\_data module
+---------------------
+
+.. automodule:: t2c.misc_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+t2c.utils module
+----------------
+
+.. automodule:: t2c.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+t2c.word\_embeddings module
+---------------------------
+
+.. automodule:: t2c.word_embeddings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: t2c
+   :members:
+   :undoc-members:
+   :show-inheritance:
