@@ -69,7 +69,7 @@ class Predictor(BasePredictor):
                                 default=True),
         normalization: str = Input(description="normalization method",
                                    choices=['zscore', 'softmax', 'l2', 'null'],
-                                   default=None),
+                                   default='null'),
         alpha: float = Input(description=(
                                 "weighting factor for the `concept representative term` "
                                 "over the other concept terms. It is relevant only for "

@@ -440,7 +440,7 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         dictionary: dict[str, set[str]],
         word_embs: WordEmbedding,
         alpha: float = 0.5,
-        idf: Optional[npt.NDArray[np.float64]] = None,
+        idf: Optional[dict[str, float]] = None,
         *args,
         **kwargs
     ):
@@ -463,8 +463,17 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         self.concept_embs = dict()
         for concept, terms in dictionary.items():
             # fetch embeddings and post processing
-            terms_embs, _, terms_healthy = self._get_embs_idf(list(terms))
-            cncpt_emb, _, cncpt_healthy = self._get_embs_idf(concept)
+            if isinstance(self.word_embs.w2v, GloVe):
+                concept_terms = f"{concept} {' '.join(terms)}"
+                concept_terms = (
+                    self.word_embs.w2v._tokenizer.encode(concept_terms).tokens
+                )
+                embs, _, healthy = self._get_embs_idf(concept_terms)
+                cncpt_emb, terms_embs = embs[0][None], embs[1:]
+                cncpt_healthy, terms_healthy = np.array([healthy[0]]), healthy[1:]
+            else:
+                terms_embs, _, terms_healthy = self._get_embs_idf(list(terms))
+                cncpt_emb, _, cncpt_healthy = self._get_embs_idf(concept)
 
             # get relative contributions
             if len(terms_healthy) == 0 and len(cncpt_healthy) == 1:
@@ -495,7 +504,7 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
 
     def __fetch_idfs(
         self,
-        token_ids: npt.NDArray[np.int64]
+        tokens: npt.NDArray[object]
     ) -> npt.NDArray[np.float64]:
         """ fetch IDF values from internal idf vector
 
@@ -503,16 +512,16 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         the embedding (word_embs member of the object).
 
         Args:
-            token_ids: an array of indices corresponding to the terms of which
+            tokens: an array of indices corresponding to the terms of which
                        the IDFs to be retrieved.
 
         Returns:
             IDF values corresponding to the input indices.
         """
         return (
-            np.ones(len(token_ids))
+            np.ones(len(tokens))
             if self.idf is None
-            else self.idf[token_ids]
+            else np.array([self.idf.get(t, 0.) for t in tokens])
         )
 
     def __get_healthy_terms(
@@ -543,9 +552,7 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         # get terms and tokens that are "healthy"
         terms_ary = np.asarray(terms)
 
-        token_ids = np.array(
-            [self.word_embs._tokenizer.token_to_id(w) for w in terms]
-        )
+        token_ids = np.array([self.word_embs.get_id(w) for w in terms])
         healthy = np.where(token_ids != None)[0]
 
         # filter unhealthy entries
@@ -605,7 +612,7 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
         healthy, token_ids, terms_ary = self.__get_healthy_terms(terms)
 
         # get idfs
-        idfs = self.__fetch_idfs(token_ids)
+        idfs = self.__fetch_idfs(np.array(terms_ary))
 
         # get embs
         embs = self.__get_embs(terms_ary)

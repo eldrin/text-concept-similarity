@@ -1,7 +1,7 @@
 from typing import Optional
 import logging
 
-import numpy as np
+import pandas as pd
 import fire
 
 from .word_embeddings import load_word_embs
@@ -30,7 +30,7 @@ def extract(
     binary: bool = False,
     dict_fn: Optional[str] = None,
     tokenizer_fn: Optional[str] = None,
-    normalization: Optional[str] = None
+    normalization: str = 'null'
 ) -> None:
     """ Extracting estimated concept relevance scores based on text and concept dictionary
 
@@ -106,12 +106,7 @@ def extract(
 
     # convert idf into list of values
     if apply_idf:
-        idf_ = load_idf(idf_fn)
-        idf = np.zeros((len(idf_),), dtype=np.float64)
-        for token, value in idf_.items():
-            i = tokenizer.token_to_id(token)
-            if i is not None:
-                idf[i] = value
+        idf = load_idf(idf_fn)
     else:
         idf = None
 
@@ -138,17 +133,14 @@ def extract(
                                             idf=idf)
 
     # load input data (we're expecting a text file whose lines are flattened text of docs)
-    new_docs = []
-    with open(input_fn, 'r') as f:
-        for line in f:
-            new_docs.append(line.replace('\n', ''))
+    new_docs = pd.read_csv(input_fn, header=None)[0].values
 
     # predict and normalize
     S = estimator.predict_scores(new_docs)
-    S = normalize_scores(S, normalization)
+    S = normalize_scores(S, normalization if normalization != 'null' else None)
 
     # save the data and do not return anything
-    S.to_csv(out_fn)
+    S.to_csv(out_fn, float_format="%.10f")
 
 
 def main():

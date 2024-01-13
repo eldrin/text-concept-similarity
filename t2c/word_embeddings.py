@@ -737,7 +737,7 @@ class GloVeWordEmbedding(WordEmbedding):
         Returns:
             boolean indicating whether the word is in the embedding or not.
         """
-        return self.w2v.get_id(word) is not None
+        return self.get_id(word) is not None
 
     def _preproc(self, word: str) -> str:
         """ preprocess the words
@@ -762,7 +762,7 @@ class GloVeWordEmbedding(WordEmbedding):
         Returns:
             index of the given token. it returns None if it is not found.
         """
-        return self.w2v.get_id(word)
+        return self.w2v._tokenizer.token_to_id(word)
 
     def get_vector(self, word: str) -> Optional[npt.ArrayLike]:
         """ get an embedding vector for given word
@@ -775,7 +775,11 @@ class GloVeWordEmbedding(WordEmbedding):
         Return:
             word embedding vector corresponding to the word
         """
-        return self.w2v.get_vector(word)
+        index = self.get_id(word)
+        if index is None:
+            return None
+        else:
+            return self.w2v.solver.embeddings_['W'][index]
 
     def get_vectors(self, words: list[str]) -> npt.ArrayLike:
         """ get an embedding vectors for given words
@@ -788,8 +792,8 @@ class GloVeWordEmbedding(WordEmbedding):
         Return:
             word embedding vectors corresponding to the words
         """
-        words_exists = [w for w in words if self.w2v.get_id(w) is not None]
-        return np.array([self.w2v.get_vector(w) for w in words_exists])
+        words_exists = [w for w in words if self.get_id(w) is not None]
+        return np.array([self.get_vector(w) for w in words_exists])
 
 
 def load_word_embs(
