@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to text-concept-similarity’s documentation! &mdash; text-concept-similarity 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="t2c" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            text-concept-similarity
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">t2c</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">text-concept-similarity</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to text-concept-similarity’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-text-concept-similarity-s-documentation">
+<h1>Welcome to text-concept-similarity’s documentation!<a class="headerlink" href="#welcome-to-text-concept-similarity-s-documentation" title="Link to this heading"></a></h1>
+<section id="text-to-concept-similarity-estimates">
+<h2>Text to Concept Similarity Estimates<a class="headerlink" href="#text-to-concept-similarity-estimates" title="Link to this heading"></a></h2>
+<p>It is a small pakcage that implements a few procedures that estimates similarities between the given text and a certain arbitrary concept. For instance, a text of auto-essay and the similarities towards high level concepts such as traits of personality. (i.e., Honesty-Humility, Emotionality, Extraversion, Agreeableness, …) In natural language processing (NLP), it is common practice that estimating the “distance” or “similarity” between two sets of text inputs using word-embeddings (or some more advanced means such as <a class="reference external" href="https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)">Transformers</a>). Thus, this package aims to implement some of the reliable ways to estimate the similarity between a text passage and a group of words using some of those techniques.</p>
+<p>Ultimately, we seek to build a tool that can be used in general scenario where one would like to estimate the similarities from given texts to the arbitrary sets of concepts.</p>
+<p>Currently, two estimating procedures are implemented:</p>
+<ul class="simple">
+<li><p>a frequency based method relying on the exact string-match (<a class="reference external" href="https://onlinelibrary.wiley.com/doi/full/10.1002/per.2294">Ponizovskiy et al. 2020</a>).</p></li>
+<li><p>estimating similarities based on the cosine distance among word embeddings weighted by the inverse document frequencies.</p></li>
+</ul>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h3>
+<p>Currently we provide the package through only by the github.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/eldrin/text-concept-similarity@main
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<p>Once installed, the package can be used as the normal python package. The most important objects would be the <a class="reference external" href="https://jaehun.kim/text-concept-similarity/t2c.html#module-t2c.estimator"><code class="docutils literal notranslate"><span class="pre">estimators</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">t2c.estimator</span> <span class="kn">import</span> <span class="n">WordEmbeddingSimilarity</span>
+<span class="kn">from</span> <span class="nn">t2c.word_embeddings</span> <span class="kn">import</span> <span class="n">load_word_embs</span>
+<span class="kn">from</span> <span class="nn">t2c.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">load_ponizovskiy</span><span class="p">,</span>
+                       <span class="n">load_tokenizer</span><span class="p">,</span>
+                       <span class="n">load_idf</span><span class="p">)</span>
+
+<span class="c1"># load default personal value dictionary</span>
+<span class="n">dic</span> <span class="o">=</span> <span class="n">load_ponizovskiy</span><span class="p">()</span>
+
+<span class="c1"># load default tokenizer</span>
+<span class="n">tok</span> <span class="o">=</span> <span class="n">load_tokenizer</span><span class="p">()</span>
+
+<span class="c1"># load default idfs</span>
+<span class="n">idf</span> <span class="o">=</span> <span class="n">load_idf</span><span class="p">()</span>
+
+<span class="c1"># load word embedding</span>
+<span class="n">word_embs</span> <span class="o">=</span> <span class="n">load_word_embs</span><span class="p">(</span><span class="n">word_embs_name_or_path</span><span class="p">,</span>
+                           <span class="n">tok</span><span class="p">)</span>
+
+<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;There is nothing either good or bad, but thinking makes it so.&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+
+<span class="c1"># instantiate</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">WordEmbeddingSimilarity</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span> <span class="n">word_embs</span><span class="p">,</span> <span class="n">idf</span><span class="p">,</span>
+                              <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># predict concept scores</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_scores</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also, we provide the CLI outlet for extracting the estimations directly from the commandline.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>t2csim<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/input_text.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/output.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/embedding/or/embedding_name/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dict_fn<span class="o">=</span>/path/to/dictionary.json
+</pre></div>
+</div>
+<p>It expects the input text file contianing text files where each “document” corresponds to each row.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>this is the first document.
+this is the second document.
+...
+</pre></div>
+</div>
+<p>Without specifying the dictionary file for concept words, the personal value dictionary (<a class="reference external" href="https://onlinelibrary.wiley.com/doi/full/10.1002/per.2294">Ponizovskiy et al. 2020</a>) is used as the default dictionary. The custom dictionary can be provided by a text file containing the dictionary in <code class="docutils literal notranslate"><span class="pre">json</span></code> format.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;concept1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;concept1_word1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;concept1_word2&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;concept2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;concept2_word1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;concept2_word2&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more detailed information, check <code class="docutils literal notranslate"><span class="pre">t2csim</span> <span class="pre">--help</span></code>.</p>
+<p>With <a class="reference external" href="https://www.docker.com/"><code class="docutils literal notranslate"><span class="pre">docker</span></code></a> and <a class="reference external" href="https://github.com/replicate/cog"><code class="docutils literal notranslate"><span class="pre">cog</span></code></a>, one can also call the extraction within the docker container easily.</p>
+<p>It requires two steps. Firstly, the embedding files should be fetched.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>TBD
+</pre></div>
+</div>
+<p>and then the extraction can be called by the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cog<span class="w"> </span>predict<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-i<span class="w"> </span><span class="nv">text</span><span class="o">=</span>@path/to/input_text.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-i<span class="w"> </span><span class="nv">word_embs</span><span class="o">=</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-i<span class="w"> </span><span class="nv">dictionary</span><span class="o">=</span>@path/to/custom_dictionary.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-i<span class="w"> </span><span class="nv">normalization</span><span class="o">=</span><span class="s2">&quot;softmax&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-i<span class="w"> </span><span class="nv">alpha</span><span class="o">=</span><span class="m">0</span>.5
+</pre></div>
+</div>
+</section>
+<section id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
+<p>Jaehun Kim (jaehun_dot_j_dot_kim_at_gmail_dot_com)</p>
+</section>
+<section id="license">
+<h3>License<a class="headerlink" href="#license" title="Link to this heading"></a></h3>
+<p>MIT</p>
+</section>
+<section id="citation">
+<h3>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">bibtex_tbd</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="todos">
+<h3>TODOs<a class="headerlink" href="#todos" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] test coverage</p>
+<ul>
+<li><p>[ ] data I/O</p></li>
+<li><p>[ ] utility functions</p></li>
+<li><p>[ ] estimators</p>
+<ul>
+<li><p>[x] wordcounting</p></li>
+<li><p>[ ] further corner cases on embedding similarity</p></li>
+<li><p>[ ] further corner cases on word counting</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>[x] docstrings</p></li>
+<li><p>[ ] improve docstrings</p></li>
+<li><p>[ ] further optimization</p></li>
+</ul>
+</section>
+<section id="acknowledge">
+<h3>Acknowledge<a class="headerlink" href="#acknowledge" title="Link to this heading"></a></h3>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">t2c</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="t2c.html">t2c package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-right" title="t2c" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jaehun Kim.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
