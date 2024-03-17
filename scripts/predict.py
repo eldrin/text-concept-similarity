@@ -26,6 +26,7 @@ WORD_EMBEDDING_PATHS = {
     'mxm-cv-8': './data/embeddings/split_eval/8/output',
     'mxm-cv-9': './data/embeddings/split_eval/9/output',
     'wordcount': 'wordcount',
+    'paraphrase-mpnet-base-v2': 'paraphrase-mpnet-base-v2',
 }
 
 WORD_EMBEDDING_FLAGS = {
@@ -49,7 +50,8 @@ WORD_EMBEDDING_FLAGS = {
         'is_glove': True,
         'binary': True
     },
-    'wordcount': {}  # it doesn't need any of these setup
+    'wordcount': {},  # it doesn't need any of these setup
+    'paraphrase-mpnet-base-v2': {}  # same
 }
 
 

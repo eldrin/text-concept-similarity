@@ -5,9 +5,11 @@ from itertools import chain
 
 import numpy as np
 import numpy.typing as npt
+import pandas as pd
 
 from tokenizers import Tokenizer
 from gloves.model import GloVe
+from sentence_transformers import SentenceTransformer
 from .word_embeddings import WordEmbedding
 
 
@@ -673,3 +675,49 @@ class WordEmbeddingSimilarity(BaseText2ConceptEstimator):
                 )
             value_scores.append(doc_concept_sim)
         return value_scores
+
+
+class SentenceBERT(BaseText2ConceptEstimator):
+    model_key = 'paraphrase-mpnet-base-v2'
+    """
+    """
+    def __init__(
+        self,
+        dictionary: dict[str, set[str]],
+        *args,
+        **kwargs
+    ):
+        """
+        """
+        self._sbert = SentenceTransformer(self.model_key)
+        super().__init__(dictionary)
+
+    def init_dictionary(
+        self,
+        dictionary: dict[str, set[str]]
+    ):
+        """
+        extract "value embeddings" from dictionary using sbert
+        """
+        self.value_names = []
+        value_embs = []
+        for concept, terms in dictionary.items():
+            self.value_names.append(concept)
+            value_embs.append([self._sbert.encode(f"{concept} {' '.join(terms)}")])
+        self.value_embs = np.concatenate(value_embs, axis=0)
+        self.value_embs /= np.linalg.norm(self.value_embs, axis=1)[:, None]
+
+    def predict_scores(
+        self,
+        new_doc_batch: list[str],
+    ) -> list[dict[str, npt.NDArray[np.float64]]]:
+        """
+        """
+        doc_embs = self._sbert.encode(new_doc_batch)
+        doc_embs /= np.linalg.norm(doc_embs, axis=1)[:, None]
+        scores = doc_embs @ self.value_embs.T
+        scores_df = pd.DataFrame(scores, columns=self.value_names)
+        res = []
+        for _, row in scores_df.iterrows():
+            res.append(row.to_dict())
+        return res

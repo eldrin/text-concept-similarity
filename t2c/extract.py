@@ -6,7 +6,8 @@ import fire
 
 from .word_embeddings import load_word_embs
 from .estimator import (WordCount,
-                        WordEmbeddingSimilarity)
+                        WordEmbeddingSimilarity,
+                        SentenceBERT)
 from .utils import (load_dictionary,
                     load_ponizovskiy,
                     normalize_scores,
@@ -119,6 +120,8 @@ def extract(
     # initialize estimator
     if word_embs_name_or_path == 'wordcount':
         estimator = WordCount(terms, tokenizer)
+    elif word_embs_name_or_path == 'paraphrase-mpnet-base-v2':
+        estimator = SentenceBERT(terms)
     else:
         # load word embeddings
         word_embs = load_word_embs(word_embs_name_or_path,
