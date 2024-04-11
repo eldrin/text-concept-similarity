@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>t2c package &mdash; text-concept-similarity 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="t2c" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            text-concept-similarity
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">t2c</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">t2c package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-t2c.estimator">t2c.estimator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.BaseText2ConceptEstimator"><code class="docutils literal notranslate"><span class="pre">BaseText2ConceptEstimator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.SentenceBERT"><code class="docutils literal notranslate"><span class="pre">SentenceBERT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.WordCount"><code class="docutils literal notranslate"><span class="pre">WordCount</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.WordEmbeddingSimilarity"><code class="docutils literal notranslate"><span class="pre">WordEmbeddingSimilarity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.cosine_similarity_with_unit_vectors"><code class="docutils literal notranslate"><span class="pre">cosine_similarity_with_unit_vectors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.normalize_vector"><code class="docutils literal notranslate"><span class="pre">normalize_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.estimator.weight_vector"><code class="docutils literal notranslate"><span class="pre">weight_vector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-t2c.extract">t2c.extract module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.extract.extract"><code class="docutils literal notranslate"><span class="pre">extract()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.extract.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-t2c.misc_data">t2c.misc_data module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.misc_data.default_idf"><code class="docutils literal notranslate"><span class="pre">default_idf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.misc_data.default_tokenizer"><code class="docutils literal notranslate"><span class="pre">default_tokenizer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-t2c.utils">t2c.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.utils.load_dictionary"><code class="docutils literal notranslate"><span class="pre">load_dictionary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.utils.load_idf"><code class="docutils literal notranslate"><span class="pre">load_idf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.utils.load_ponizovskiy"><code class="docutils literal notranslate"><span class="pre">load_ponizovskiy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.utils.load_tokenizer"><code class="docutils literal notranslate"><span class="pre">load_tokenizer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.utils.normalize_scores"><code class="docutils literal notranslate"><span class="pre">normalize_scores()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-t2c.word_embeddings">t2c.word_embeddings module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.GensimWordEmbedding"><code class="docutils literal notranslate"><span class="pre">GensimWordEmbedding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.GloVeWordEmbedding"><code class="docutils literal notranslate"><span class="pre">GloVeWordEmbedding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.Word2VecLookup"><code class="docutils literal notranslate"><span class="pre">Word2VecLookup</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.Word2VecLookupEmbedding"><code class="docutils literal notranslate"><span class="pre">Word2VecLookupEmbedding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.WordEmbedding"><code class="docutils literal notranslate"><span class="pre">WordEmbedding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.gensim2hdf"><code class="docutils literal notranslate"><span class="pre">gensim2hdf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.load_word_embs"><code class="docutils literal notranslate"><span class="pre">load_word_embs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#t2c.word_embeddings.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-t2c">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">text-concept-similarity</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">t2c</a></li>
+      <li class="breadcrumb-item active">t2c package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/t2c.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="t2c-package">
+<h1>t2c package<a class="headerlink" href="#t2c-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-t2c.estimator">
+<span id="t2c-estimator-module"></span><h2>t2c.estimator module<a class="headerlink" href="#module-t2c.estimator" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.estimator.BaseText2ConceptEstimator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">BaseText2ConceptEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.BaseText2ConceptEstimator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>It is a abstract class for the estimator. It defines a few methods and
+fields that are necessary for the estimatino.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.BaseText2ConceptEstimator.dictionary">
+<span class="sig-name descname"><span class="pre">dictionary</span></span><a class="headerlink" href="#t2c.estimator.BaseText2ConceptEstimator.dictionary" title="Link to this definition"></a></dt>
+<dd><p>a dictionary whose key is the concept word, value contains a
+set of words that are related to the concept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, set[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.BaseText2ConceptEstimator.init_dictionary">
+<span class="sig-name descname"><span class="pre">init_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.BaseText2ConceptEstimator.init_dictionary" title="Link to this definition"></a></dt>
+<dd><p>initialize the dictionary</p>
+<p>Initializes the dictionary suitable for each esimtation method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dictionary</strong> – a dictionary whose key is the concept word, value
+contains a set of words that are related to the concept.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.BaseText2ConceptEstimator.predict_scores">
+<span class="sig-name descname"><span class="pre">predict_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_doc_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.BaseText2ConceptEstimator.predict_scores" title="Link to this definition"></a></dt>
+<dd><p>predict estimated simliarity between text and concepts</p>
+<p>similarity esimtation between text and each concept is computed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_doc_batch</strong> – given new batch of texts.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>esimated simliarity scores per concpet, per text.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.estimator.SentenceBERT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">SentenceBERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.SentenceBERT" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#t2c.estimator.BaseText2ConceptEstimator" title="t2c.estimator.BaseText2ConceptEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseText2ConceptEstimator</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.SentenceBERT.init_dictionary">
+<span class="sig-name descname"><span class="pre">init_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.SentenceBERT.init_dictionary" title="Link to this definition"></a></dt>
+<dd><p>extract “value embeddings” from dictionary using sbert</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.SentenceBERT.model_key">
+<span class="sig-name descname"><span class="pre">model_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'paraphrase-mpnet-base-v2'</span></em><a class="headerlink" href="#t2c.estimator.SentenceBERT.model_key" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.SentenceBERT.predict_scores">
+<span class="sig-name descname"><span class="pre">predict_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_doc_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.SentenceBERT.predict_scores" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.estimator.WordCount">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">WordCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tokenizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ipsatize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.WordCount" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#t2c.estimator.BaseText2ConceptEstimator" title="t2c.estimator.BaseText2ConceptEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseText2ConceptEstimator</span></code></a></p>
+<p>It implements simple word-counting based estimation. We follow the procdure
+that is used by (Ponizovskiy et al. 2020).</p>
+<p>For given document <span class="math notranslate nohighlight">\(d\)</span>, it compute the scores per concept
+<span class="math notranslate nohighlight">\(y_{c, d}\)</span> based on the frequency of words per concept <strong>minus</strong>
+the total hit count from all words within the dictionary.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y_{c, d} &amp;= \text{tf}_{c, d} - \text{tf}_{d} \\
+\text{tf}_{c, d} &amp;= |t \in \mathcal{T}_{c} : t \in d| \\
+\text{tf}_{d} &amp;= \sum_{c\in\mathcal{C}} \text{tf}_{c, d}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\in\mathcal{C}\)</span> denotes a concept, <span class="math notranslate nohighlight">\(d\in\mathcal{D}\)</span>
+denotes a document within the corpus <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, and
+<span class="math notranslate nohighlight">\(t\in d\)</span> denotes the term/word/token within the document.</p>
+<p>The (document, concept) specific term frequency <span class="math notranslate nohighlight">\(tf\)</span> is “ipsatized”
+following (Ponizovskiy et al. 2020), which works as a sort of normalization
+that transforms the linear scores become more aligned with “ranking” of
+concepts. Specifically, it is computed by subtracting the frequency of
+all terms included in the dictionary from the frequencies of each concept.
+(i.e., the first equation above.)</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">t2c.estimator</span> <span class="kn">import</span> <span class="n">WordCount</span>
+<span class="kn">from</span> <span class="nn">t2c.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">load_ponizovskiy</span><span class="p">,</span>
+                       <span class="n">load_tokenizer</span><span class="p">)</span>
+
+<span class="c1"># load default personal value dictionary</span>
+<span class="n">dic</span> <span class="o">=</span> <span class="n">load_ponizovskiy</span><span class="p">()</span>
+
+<span class="c1"># load default tokenizer</span>
+<span class="n">tok</span> <span class="o">=</span> <span class="n">load_tokenizer</span><span class="p">()</span>
+
+<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;There is nothing either good or bad, but thinking makes it so.&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+
+<span class="c1"># instantiate</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">WordCount</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span> <span class="n">tok</span><span class="p">,</span> <span class="n">ipsatize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># predict concept scores</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_scores</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordCount.dictionary">
+<span class="sig-name descname"><span class="pre">dictionary</span></span><a class="headerlink" href="#t2c.estimator.WordCount.dictionary" title="Link to this definition"></a></dt>
+<dd><p>a dictionary whose key is the concept word, value contains a
+set of words that are related to the concept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, set[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordCount.tokenizer">
+<span class="sig-name descname"><span class="pre">tokenizer</span></span><a class="headerlink" href="#t2c.estimator.WordCount.tokenizer" title="Link to this definition"></a></dt>
+<dd><p>a pretrained tokenizer which do the toknization of given text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokenizers.Toeknizer</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordCount.ipsatize">
+<span class="sig-name descname"><span class="pre">ipsatize</span></span><a class="headerlink" href="#t2c.estimator.WordCount.ipsatize" title="Link to this definition"></a></dt>
+<dd><p>flag that sets whether “ipsatization” is applied or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.WordCount.init_dictionary">
+<span class="sig-name descname"><span class="pre">init_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.WordCount.init_dictionary" title="Link to this definition"></a></dt>
+<dd><p>initialize the dictionary</p>
+<p>The dictionary is reversed so that one can efficiently check the
+hit of each tokens to the set of tokens belonging a certain concept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dictionary</strong> – a dictionary whose key is the concept word, value
+contains a set of words that are related to the concept.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.WordCount.predict_scores">
+<span class="sig-name descname"><span class="pre">predict_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_doc_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.WordCount.predict_scores" title="Link to this definition"></a></dt>
+<dd><p>predict estimated simliarity between text and concepts</p>
+<p>similarity esimtation between text and each concept is computed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_doc_batch</strong> – given new batch of texts.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>esimated simliarity scores per concpet, per text.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">WordEmbeddingSimilarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_embs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><span class="pre">WordEmbedding</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#t2c.estimator.BaseText2ConceptEstimator" title="t2c.estimator.BaseText2ConceptEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseText2ConceptEstimator</span></code></a></p>
+<p>It implements the text to concept similarity via the cosine similarity
+between word-embeddings. Additionally, it weighs each word/token within
+a document by the <a class="reference external" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">inverse document frequency</a> (IDF). It weighs less
+the overly frequent words (i.e., such as stopwords) while weigh more the
+other words.</p>
+<p>For a given concept <span class="math notranslate nohighlight">\(c\in\mathcal{C}\)</span> and document
+<span class="math notranslate nohighlight">\(d\in\mathcal{D}\)</span>, the score <span class="math notranslate nohighlight">\(y_{c, d}\)</span> is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+y_{c, d} =
+\begin{cases}
+  \tilde{y}_{\{{t^\prime}_{c}\}, d}, &amp; \text{if } |\mathcal{T}_{c}\setminus {t^\prime}_{c}| = 0 \wedge {t^\prime}_{c} \in \mathcal{W} \\
+  \tilde{y}_{\mathcal{T}_{c}\setminus {t^\prime}_{c}, d},     &amp; \text{if } |\mathcal{T}_{c}\setminus {t^\prime}_{c}| \gt 0 \wedge {t^\prime}_{c} \notin \mathcal{W} \\
+  0,                                        &amp; \text{if } |\mathcal{T}_{c}\setminus {t^\prime}_{c}| = 0 \wedge {t^\prime}_{c} \notin \mathcal{W} \\
+  \alpha\tilde{y}_{\{{t^\prime}_{c}\}, d} + (1 - \alpha)\tilde{y}_{\mathcal{T}_{c}\setminus {t^\prime}_{c}, d} &amp; \text{otherwise}
+\end{cases}
+\]</div><p>where <span class="math notranslate nohighlight">\(\mathcal{T}_{c} := \{ t \in c : t \in \mathcal{W} \}\)</span>
+denotes the set of terms/words/tokens related to a concept <span class="math notranslate nohighlight">\(c\)</span>,
+<span class="math notranslate nohighlight">\(t^{\prime}_{c}\)</span> refers the “representative term” of the concept
+<span class="math notranslate nohighlight">\(c\)</span> (i.e., <em>openness</em> vs. {new, imaginative, untraditional, …}),
+<span class="math notranslate nohighlight">\(\mathcal{W}\)</span> means the set of words that are supported by the embedding
+<span class="math notranslate nohighlight">\(\mathcal{E}_{\mathcal{W}} := \{ e_{t} \in \mathcal{E} : t \in \mathcal{W}\ \wedge \mathcal{E} \subset \mathbb{R}^{r} \}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\alpha\in[0, 1]\)</span> controls the contribution of representative
+term <span class="math notranslate nohighlight">\(t^{\prime}_{c}\)</span> over the other related terms in
+<span class="math notranslate nohighlight">\(\mathcal{T}_{c}\)</span>. If <span class="math notranslate nohighlight">\(\alpha\)</span> is set as 1, it means that
+it does not consider the sub scores from other terms, and vice versa
+when it is set as 0. Further, the score can visit corner cases where either
+representative term <span class="math notranslate nohighlight">\(t^{\prime}_{c}\)</span> or all of other concept
+terms <span class="math notranslate nohighlight">\(t_{c}\in\mathcal{T}_{c}\)</span> are not found from the embedding
+<span class="math notranslate nohighlight">\(\mathcal{E}_{\mathcal{W}}\)</span>. In those cases, first three conditional
+score is computed and returned.</p>
+<p>Finally, the intermediate score <span class="math notranslate nohighlight">\(\tilde{y}_{\mathcal{T}, d}\)</span> is computed as follows.</p>
+<div class="math notranslate nohighlight">
+\[\tilde{y}_{\mathcal{T}, d} = \frac{ \sum_{k \in \mathcal{T}}\sum_{t \in d} s_{\text{cos}}(k, t)\text{tf}(t)\text{idf}(t) }{ |\mathcal{T}| \sum_{t \in d} \text{tf}(t) }\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> denotes the set of terms/words/tokens,
+<span class="math notranslate nohighlight">\(s_{\text{cos}}\)</span> refers the cosine simliarity between word embeddings
+corresponding terms <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[s_{\text{cos}}(a, b) = \frac{ e_{a} \cdot e_{b} }{ ||e_{a}||||e_{b}|| }\]</div>
+<p>where <span class="math notranslate nohighlight">\(e_{t}\in\mathcal{E}_{\mathcal{W}}\)</span> denotes the embedding vector
+with the dimensionality of <span class="math notranslate nohighlight">\(r\)</span>, and <span class="math notranslate nohighlight">\(||\cdot||\)</span> refers the
+L-2 norm of the vector.</p>
+<p>In this procedure, <span class="math notranslate nohighlight">\(\text{idf}\)</span> is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[\text{idf}(t) = \text{log}(|\mathcal{D}| / (1 + \text{df}(t))) + 1\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{df}(t)\)</span> denotes the <em>document frequency</em> of
+term/word/token <span class="math notranslate nohighlight">\(t\)</span>. IDF is pre-computed from a large corpus such
+as the <a class="reference external" href="https://www.wikipedia.org">Wikipedia</a> (which is our default). Custom IDF can be given, if
+it’s following the format. (i.e., text file where each row contains term
+and IDF value delimited by tab)</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">t2c.estimator</span> <span class="kn">import</span> <span class="n">WordEmbeddingSimilarity</span>
+<span class="kn">from</span> <span class="nn">t2c.word_embeddings</span> <span class="kn">import</span> <span class="n">load_word_embs</span>
+<span class="kn">from</span> <span class="nn">t2c.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">load_ponizovskiy</span><span class="p">,</span>
+                       <span class="n">load_tokenizer</span><span class="p">,</span>
+                       <span class="n">load_idf</span><span class="p">)</span>
+
+<span class="c1"># load default personal value dictionary</span>
+<span class="n">dic</span> <span class="o">=</span> <span class="n">load_ponizovskiy</span><span class="p">()</span>
+
+<span class="c1"># load default tokenizer</span>
+<span class="n">tok</span> <span class="o">=</span> <span class="n">load_tokenizer</span><span class="p">()</span>
+
+<span class="c1"># load default idfs</span>
+<span class="n">idf</span> <span class="o">=</span> <span class="n">load_idf</span><span class="p">()</span>
+
+<span class="c1"># load word embedding</span>
+<span class="n">word_embs</span> <span class="o">=</span> <span class="n">load_word_embs</span><span class="p">(</span><span class="n">word_embs_name_or_path</span><span class="p">,</span>
+                           <span class="n">tok</span><span class="p">)</span>
+
+<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;There is nothing either good or bad, but thinking makes it so.&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+
+<span class="c1"># instantiate</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">WordEmbeddingSimilarity</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span> <span class="n">word_embs</span><span class="p">,</span> <span class="n">idf</span><span class="p">,</span>
+                              <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># predict concept scores</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_scores</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>TODO: We probably should revisit here later to generalize</dt><dd><p>to apply concept-term weights as some study does
+explore and ship the concept-term weight as part of the dictionary.</p>
+</dd>
+<dt>TODO: combining [word_embedding - tokenzier - idf] might be a good idea</dt><dd><p>to improve the usability</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case the term/token doesn’t have the IDF entry,
+we assign the median of IDF.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity.dictionary">
+<span class="sig-name descname"><span class="pre">dictionary</span></span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity.dictionary" title="Link to this definition"></a></dt>
+<dd><p>a dictionary whose key is the concept word, value contains a
+set of words that are related to the concept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, set[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity.word_embs">
+<span class="sig-name descname"><span class="pre">word_embs</span></span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity.word_embs" title="Link to this definition"></a></dt>
+<dd><p>word embedding object. see <a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordEmbedding</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordEmbedding</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity.idf">
+<span class="sig-name descname"><span class="pre">idf</span></span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity.idf" title="Link to this definition"></a></dt>
+<dd><p>a float array contains IDF values per token/term/words. Its indices
+is pre-sorted based on the tokenizer embedded in the <cite>word_embs</cite>.
+if not given, it weights the scores per terms uniformly.
+(the weight is set to 1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.typing.NDArray</span></code>, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity.alpha">
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity.alpha" title="Link to this definition"></a></dt>
+<dd><p>a float ranged within [0, 1] that controls the relative importance of
+<cite>representative term</cite> when computing the aggregated score</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity.init_dictionary">
+<span class="sig-name descname"><span class="pre">init_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity.init_dictionary" title="Link to this definition"></a></dt>
+<dd><p>initialize the dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dictionary</strong> – a dictionary whose key is the concept word, value
+contains a set of words that are related to the concept.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.estimator.WordEmbeddingSimilarity.predict_scores">
+<span class="sig-name descname"><span class="pre">predict_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_doc_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.WordEmbeddingSimilarity.predict_scores" title="Link to this definition"></a></dt>
+<dd><p>predict estimated simliarity between text and concepts</p>
+<p>similarity esimtation between text and each concept is computed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_doc_batch</strong> – given new batch of texts.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>esimated simliarity scores per concpet, per text.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.estimator.cosine_similarity_with_unit_vectors">
+<span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">cosine_similarity_with_unit_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.cosine_similarity_with_unit_vectors" title="Link to this definition"></a></dt>
+<dd><p>compute cosine similarity between bag of unit vectors</p>
+<p>as we assume the vectors are already normalized, essentially
+it just computes the dot-products between to matrices.</p>
+<dl class="simple">
+<dt>it expect the size of:</dt><dd><p>A (left vectors) having (n_vectors_A, dim)
+B (right vectors) having (n_vectors_B, dim)</p>
+</dd>
+</dl>
+<p>Thus the output size will be (n_vectors_A, n_vectors_B)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – left unit vectors</p></li>
+<li><p><strong>B</strong> – right unit vectors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>computed cosine distances between two sets of vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.estimator.normalize_vector">
+<span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">normalize_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.normalize_vector" title="Link to this definition"></a></dt>
+<dd><p>normalize the vectors into the unit vector</p>
+<p>it devide given vectors with their L2 norm, so that the outcome
+is to be the unit vector of them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> – set of vectors to be normalized. expecting first dimension to be
+the number of vectors, second being the dimensionality</p></li>
+<li><p><strong>eps</strong> – small floating number that prevents the 0 vector to be explode</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>normalized unit vectors of given vectors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.estimator.weight_vector">
+<span class="sig-prename descclassname"><span class="pre">t2c.estimator.</span></span><span class="sig-name descname"><span class="pre">weight_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.estimator.weight_vector" title="Link to this definition"></a></dt>
+<dd><p>weight the vectors with given weight values.</p>
+<dl class="simple">
+<dt>it multiplies the weight values to each value. If first dimension of the weight</dt><dd><p>is given differently to the vectors, it broadcast.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> – set of vectors to be weighted. expecting first dimension to be
+the number of vectors, second being the dimensionality</p></li>
+<li><p><strong>weight</strong> – tensor (or scalar) contains weight value to be applied.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>weighted vectors. It has same shape of input vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-t2c.extract">
+<span id="t2c-extract-module"></span><h2>t2c.extract module<a class="headerlink" href="#module-t2c.extract" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.extract.extract">
+<span class="sig-prename descclassname"><span class="pre">t2c.extract.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_embs_name_or_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_idf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idf_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_gensim_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_glove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'null'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.extract.extract" title="Link to this definition"></a></dt>
+<dd><p>Extracting estimated concept relevance scores based on text and concept dictionary</p>
+<ol class="arabic simple">
+<li><p>may be 5x ~ 10x faster if everything implemented in numba or cython</p></li>
+<li><dl class="simple">
+<dt>some more optimization for current form also should be possible</dt><dd><ol class="arabic simple">
+<li><p>multi-processing over songs</p></li>
+<li><p>caching word to word distance (or pre-compute all possible pairs)</p></li>
+<li><p>better vectorization (or plus GPU computation)</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>three normalization method considered</dt><dd><ol class="arabic simple">
+<li><p>None: literally do nothing</p></li>
+<li><p>‘zscore’: standard scaling</p></li>
+<li><p>‘l2’: L-2 normalization. it makes the scores per row unit vector.</p></li>
+<li><dl class="simple">
+<dt>‘softmax’:</dt><dd><p>applying softmax after z-scoring. useful when
+the relative difference of score within document is more important
+then the distribution per value variable. (it makes the per value
+distribution inconsistent, while comparison within document more clear)</p>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_fn</strong> – filename for the input text file. it expects one text per
+line in the file.</p></li>
+<li><p><strong>out_fn</strong> – filename for the output score (.csv)</p></li>
+<li><p><strong>word_embs_name_or_path</strong> – the name of the wordembedding or path to the word embedding
+currently it supports most of the model that’s supported by
+<a class="reference external" href="https://github.com/RaRe-Technologies/gensim-data#available-data">gensim-data</a>. If it is given as the path to the embeeding,
+it should be either binary/text file compatible with <cite>gensim</cite>,
+or HDF file compatible with
+<a class="reference internal" href="#t2c.word_embeddings.Word2VecLookup" title="t2c.word_embeddings.Word2VecLookup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Word2VecLookup</span></code></a> or
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">gloves.model.GloVe</span></code>.</p></li>
+<li><p><strong>alpha</strong> – weighting factor for the <cite>concept representative term</cite> over
+the other concept terms. It is relevant only for
+:obj:~t2c.estimator.WordEmbeddingSimilarity`.</p></li>
+<li><p><strong>apply_idf</strong> – flag that determines whether IDF weighting is applied to the
+score aggregation or not.</p></li>
+<li><p><strong>idf_fn</strong> – filename contains the inverse document frequency (IDF) of each
+tokens. If not given, the default IDF is used. The custom IDF
+can be provided as textfile, where each row includes pair of
+token and corresponding IDF, delimited by the tab.</p></li>
+<li><p><strong>is_gensim_model</strong> – if the embedding is for <code class="xref py py-obj docutils literal notranslate"><span class="pre">gloves.model.GloVe</span></code>,
+this should be flagged as False.</p></li>
+<li><p><strong>is_glove</strong> – if the embedding is either for <code class="xref py py-obj docutils literal notranslate"><span class="pre">gloves.model.GloVe</span></code>
+or text/binary file saved in the <a class="reference external" href="https://github.com/stanfordnlp/GloVe">glove format</a>,
+this flag should be set as True.</p></li>
+<li><p><strong>binary</strong> – if the embedding file is for <cite>gensim</cite> and saved in binary,
+this flag should be set as True.</p></li>
+<li><p><strong>dict_fn</strong> – <p>filename to the dictionary. If not given, default dictionary.
+(personal value dictionary developed by <a class="reference external" href="https://osf.io/vt8nf/?view_only=">Ponizovskiy et al.</a>)
+The custom dictionary should be in <cite>json</cite> format such as follows</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;concept1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;concept1_term1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;concept1_term2&quot;</span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;concept2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;concept2_term1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;concept2_term2&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>tokenizer_fn</strong> – filename for the pre-trained <code class="xref py py-obj docutils literal notranslate"><span class="pre">Tokenizer</span></code>.
+if not given, default tokenizer shipped with the package
+is loaded.</p></li>
+<li><p><strong>normalization</strong> – selects the normalization method. Refer
+:obj:<a href="#id1"><span class="problematic" id="id2">`</span></a>~t2c.utils.normalize_scores’ for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.extract.main">
+<span class="sig-prename descclassname"><span class="pre">t2c.extract.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#t2c.extract.main" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-t2c.misc_data">
+<span id="t2c-misc-data-module"></span><h2>t2c.misc_data module<a class="headerlink" href="#module-t2c.misc_data" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.misc_data.default_idf">
+<span class="sig-prename descclassname"><span class="pre">t2c.misc_data.</span></span><span class="sig-name descname"><span class="pre">default_idf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#t2c.misc_data.default_idf" title="Link to this definition"></a></dt>
+<dd><p>read the filename of pre-computed IDFs</p>
+<p>it returns filename to the pre-computed IDF values for the words
+, which is provided as a default IDFs. It is based on the default
+tokenizer, and IDF also is computed from the same snapshot of the
+English Wikipedia dump.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>filename to the pre-computed IDF values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.misc_data.default_tokenizer">
+<span class="sig-prename descclassname"><span class="pre">t2c.misc_data.</span></span><span class="sig-name descname"><span class="pre">default_tokenizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#t2c.misc_data.default_tokenizer" title="Link to this definition"></a></dt>
+<dd><p>read the filename of pre-trained tokenizer</p>
+<p>it returns filename to the configuration of pretrained tokenizer
+which is provided as a default tokenizer. The tokenizer is trained
+from dump of English Wikipedia, snapshot from July 2021.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>filename to the configuration of pretrained tokenizer
+which is provided as a default tokenizer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-t2c.utils">
+<span id="t2c-utils-module"></span><h2>t2c.utils module<a class="headerlink" href="#module-t2c.utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.utils.load_dictionary">
+<span class="sig-prename descclassname"><span class="pre">t2c.utils.</span></span><span class="sig-name descname"><span class="pre">load_dictionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.utils.load_dictionary" title="Link to this definition"></a></dt>
+<dd><p>load dictionary file.</p>
+<p>It just reads the custom dictionary file in the json format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – filename to the custom dictionary filename</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary of concept-words.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.utils.load_idf">
+<span class="sig-prename descclassname"><span class="pre">t2c.utils.</span></span><span class="sig-name descname"><span class="pre">load_idf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.utils.load_idf" title="Link to this definition"></a></dt>
+<dd><p>loads IDF values</p>
+<p>it loads the IDF values. if no specific filename is given, the default IDF
+values from the package is loaded instaed.</p>
+<p>A custom IDF can be given. A text file where each row has the term - idf
+pair delimited by the tabbed space can be parsed and used for the further
+procedure.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>apple   11.1251
+pear    12.1205
+...
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – filename to the IDF values for terms.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary contains IDF values per term.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.utils.load_ponizovskiy">
+<span class="sig-prename descclassname"><span class="pre">t2c.utils.</span></span><span class="sig-name descname"><span class="pre">load_ponizovskiy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.utils.load_ponizovskiy" title="Link to this definition"></a></dt>
+<dd><p>load personal value dictionary from Ponizovskiy et al.</p>
+<p>it loads the personal value dictionary from Ponizovskiy et al. It is used
+as the default dictionary if no custom dictionary is given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the personal value dictionary developed by Ponizovskiy et al. (2020)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.utils.load_tokenizer">
+<span class="sig-prename descclassname"><span class="pre">t2c.utils.</span></span><span class="sig-name descname"><span class="pre">load_tokenizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tokenizer</span></span></span><a class="headerlink" href="#t2c.utils.load_tokenizer" title="Link to this definition"></a></dt>
+<dd><p>loads pretrained tokenizer.</p>
+<p>it loads the pretrained tokenizer configurations. if no specific filename
+is given, the default tokenizer is loaded instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> – filename to the pretrained tokenizer dump file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokenizers.Tokenizer</span></code> loaded with pretrained configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.utils.normalize_scores">
+<span class="sig-prename descclassname"><span class="pre">t2c.utils.</span></span><span class="sig-name descname"><span class="pre">normalize_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'zscore'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'l2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'softmax'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#t2c.utils.normalize_scores" title="Link to this definition"></a></dt>
+<dd><p>normalize the socres with different strategies</p>
+<p>it normalizes the estimated scores with different strategies.
+Currently, 4 strategies (including null) are supported:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>null (None)</dt><dd><dl class="simple">
+<dt>:no normalization. just wrapping the given input to pandas.DataFrame</dt><dd><p>and return.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>z-scoring (‘zscore’)</dt><dd><p>:”standardize” the the scores per concepts with z-scoring</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>l2-normalization (‘l2’)</dt><dd><dl class="simple">
+<dt>:normalize the scores per “instance/row” (not per concept), using</dt><dd><p>l2-norm of each row. Each row becomes the unit vectors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>softmax (‘softmax’)</dt><dd><dl class="simple">
+<dt>:applying the softmax per “instance/row”. It transforms the real</dt><dd><p>floating values into simplex (that sums to one.)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>z-scoring is conducted as ‘preprocessing’ for ‘l2’ and ‘softmax’
+normalization.o</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scores</strong> – scores to be normalizes.</p></li>
+<li><p><strong>method</strong> – normalization method indicator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>normalized score.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-t2c.word_embeddings">
+<span id="t2c-word-embeddings-module"></span><h2>t2c.word_embeddings module<a class="headerlink" href="#module-t2c.word_embeddings" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">GensimWordEmbedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w2v_name_or_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tokenizer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_glove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">WordEmbedding</span></code></a></p>
+<p>it wraps the <code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim.models.KeyedVectors</span></code> as the
+core embedding object. It loads the embedding on the memory, which can
+take quite a bit of time if the embedding size is big.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.w2v_name_or_path">
+<span class="sig-name descname"><span class="pre">w2v_name_or_path</span></span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.w2v_name_or_path" title="Link to this definition"></a></dt>
+<dd><p>path to the word embedding dump file or the
+unique name that can be used to load the
+embedding from some platform (i.e.,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code>.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.w2v">
+<span class="sig-name descname"><span class="pre">w2v</span></span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.w2v" title="Link to this definition"></a></dt>
+<dd><p>core word embedding object. In this particular class it
+uses <code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim.models.KeyedVectors</span></code> as core.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding._tokenizer">
+<span class="sig-name descname"><span class="pre">_tokenizer</span></span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding._tokenizer" title="Link to this definition"></a></dt>
+<dd><p>the tokenizer used for preprocessing texts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokenizers.Tokenizer</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsDType</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SupportsIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">SupportsIndex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_DTypeDict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.dtype" title="Link to this definition"></a></dt>
+<dd><p>returns the (numpy) data type of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the (numpy) data type of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.get_id" title="Link to this definition"></a></dt>
+<dd><p>get index of given token, based on the tokenizer embedded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input token</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>index of the given token. it returns None if it is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.get_vector">
+<span class="sig-name descname"><span class="pre">get_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.get_vector" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vector for given word</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input single word</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vector corresponding to the word</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.get_vectors">
+<span class="sig-name descname"><span class="pre">get_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.get_vectors" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vectors for given words</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input words</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vectors corresponding to the words</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GensimWordEmbedding.n_components">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#t2c.word_embeddings.GensimWordEmbedding.n_components" title="Link to this definition"></a></dt>
+<dd><p>returns the dimensionality of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dimensionality of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">GloVeWordEmbedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w2v_name_or_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">WordEmbedding</span></code></a></p>
+<p>it wraps the <code class="xref py py-obj docutils literal notranslate"><span class="pre">gloves.model.GloVe</span></code> as the
+core embedding object. It loads the embedding on the memory, which can
+take quite a bit of time if the embedding size is big.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.w2v_name_or_path">
+<span class="sig-name descname"><span class="pre">w2v_name_or_path</span></span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.w2v_name_or_path" title="Link to this definition"></a></dt>
+<dd><p>path to the word embedding dump file or the
+unique name that can be used to load the
+embedding from some platform (i.e.,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code>.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.w2v">
+<span class="sig-name descname"><span class="pre">w2v</span></span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.w2v" title="Link to this definition"></a></dt>
+<dd><p>core word embedding object. In this particular class it
+uses <code class="xref py py-obj docutils literal notranslate"><span class="pre">gloves.model.GloVe</span></code> as core.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding._tokenizer">
+<span class="sig-name descname"><span class="pre">_tokenizer</span></span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding._tokenizer" title="Link to this definition"></a></dt>
+<dd><p>the tokenizer used for preprocessing texts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokenizers.Tokenizer</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsDType</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SupportsIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">SupportsIndex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_DTypeDict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.dtype" title="Link to this definition"></a></dt>
+<dd><p>returns the (numpy) data type of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the (numpy) data type of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.get_id" title="Link to this definition"></a></dt>
+<dd><p>get index of given token, based on the tokenizer embedded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input token</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>index of the given token. it returns None if it is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.get_vector">
+<span class="sig-name descname"><span class="pre">get_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.get_vector" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vector for given word</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input single word</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vector corresponding to the word</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.get_vectors">
+<span class="sig-name descname"><span class="pre">get_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.get_vectors" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vectors for given words</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input words</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vectors corresponding to the words</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.GloVeWordEmbedding.n_components">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#t2c.word_embeddings.GloVeWordEmbedding.n_components" title="Link to this definition"></a></dt>
+<dd><p>returns the dimensionality of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dimensionality of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">Word2VecLookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbpath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>It is a custom Word2VecLookup object based on h5py for a efficient prediction.
+The implementation is directly adopted from <a class="reference external" href="https://gist.github.com/mynameisfiber/960ccae07daa2d891df9f88bfd7e3fbe">here</a>.</p>
+<p>The main benefit of using HDF as the main storage for the word-embedding is
+its fast access to the embeddings in out-of-core. Loading the large embeddings
+onto the memory takes substantially long time, which is not suitable for
+the resources are allocated dynamically per batch of calls.
+Indexing and fetching values from HDF (with a few restriction) can makes
+each prediction slower, while much more benefitial when the number of prediction
+within batch is not that large, while the total embedding size is big.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.h5file">
+<span class="sig-name descname"><span class="pre">h5file</span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.h5file" title="Link to this definition"></a></dt>
+<dd><p>filename to the HDF file where the vector values are stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.lookupfile">
+<span class="sig-name descname"><span class="pre">lookupfile</span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.lookupfile" title="Link to this definition"></a></dt>
+<dd><p>filename to the pickle file which contains token-index
+dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.lookup">
+<span class="sig-name descname"><span class="pre">lookup</span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.lookup" title="Link to this definition"></a></dt>
+<dd><p>the actual dictionary contains the token-index map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.create_db">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word2vec_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbpath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_glove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.create_db" title="Link to this definition"></a></dt>
+<dd><p>convert saved <code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code> embedding files into custom hdf files</p>
+<p>it converts the <code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim.models.KeyedVectors</span></code> compatible embedding
+dumps into the HDF based data file (and the lookup dictionary)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>word2vec_path</strong> – path to the <code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim.models.KeyedVectors</span></code>
+compatible dump of word-embeddings</p></li>
+<li><p><strong>dbpath</strong> – path where the output is stored</p></li>
+<li><p><strong>binary</strong> – indicates whether the source file is stored in binary</p></li>
+<li><p><strong>is_glove</strong> – indicates whether the source file is saved in <a class="reference external" href="https://nlp.stanford.edu/projects/glove/">GloVe</a>
+format.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsDType</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SupportsIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">SupportsIndex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_DTypeDict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.dtype" title="Link to this definition"></a></dt>
+<dd><p>get the (numpy) data type of the embedding</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dtype of the embedding</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.get_index">
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.get_index" title="Link to this definition"></a></dt>
+<dd><p>get index of the term</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – the word to be indexed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the integer index of the word</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.get_vector">
+<span class="sig-name descname"><span class="pre">get_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.get_vector" title="Link to this definition"></a></dt>
+<dd><p>simple wrapper for __getitem__ for a single word</p>
+<p>this is mainly for the API match with other word-embedding models</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input words to be indexed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an embedding corresponding to the word</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookup.vector_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vector_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookup.vector_size" title="Link to this definition"></a></dt>
+<dd><p>get the dimensionality of the embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dimensionality of the embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">Word2VecLookupEmbedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w2v_name_or_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tokenizer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">WordEmbedding</span></code></a></p>
+<p>it wraps the <a class="reference internal" href="#t2c.word_embeddings.Word2VecLookup" title="t2c.word_embeddings.Word2VecLookup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Word2VecLookup</span></code></a> as the
+core embedding object.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.w2v_name_or_path">
+<span class="sig-name descname"><span class="pre">w2v_name_or_path</span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.w2v_name_or_path" title="Link to this definition"></a></dt>
+<dd><p>path to the word embedding dump file or the
+unique name that can be used to load the
+embedding from some platform (i.e.,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code>.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.w2v">
+<span class="sig-name descname"><span class="pre">w2v</span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.w2v" title="Link to this definition"></a></dt>
+<dd><p>core word embedding object. In this particular class it
+uses <a class="reference internal" href="#t2c.word_embeddings.Word2VecLookup" title="t2c.word_embeddings.Word2VecLookup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Word2VecLookup</span></code></a> as core.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding._tokenizer">
+<span class="sig-name descname"><span class="pre">_tokenizer</span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding._tokenizer" title="Link to this definition"></a></dt>
+<dd><p>the tokenizer used for preprocessing texts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokenizers.Tokenizer</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsDType</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SupportsIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">SupportsIndex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_DTypeDict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.dtype" title="Link to this definition"></a></dt>
+<dd><p>returns the (numpy) data type of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the (numpy) data type of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.get_id" title="Link to this definition"></a></dt>
+<dd><p>get index of given token, based on the tokenizer embedded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input token</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>index of the given token. it returns None if it is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.get_vector">
+<span class="sig-name descname"><span class="pre">get_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.get_vector" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vector for given word</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input single word</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vector corresponding to the word</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.get_vectors">
+<span class="sig-name descname"><span class="pre">get_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.get_vectors" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vectors for given words</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input words</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vectors corresponding to the words</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.Word2VecLookupEmbedding.n_components">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#t2c.word_embeddings.Word2VecLookupEmbedding.n_components" title="Link to this definition"></a></dt>
+<dd><p>returns the dimensionality of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dimensionality of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">WordEmbedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w2v_name_or_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tokenizer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_glove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_gensim_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>It is a base class for the word-embedding interface which implements
+and defines some of the methods and members that are used in its child
+classes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.w2v_name_or_path">
+<span class="sig-name descname"><span class="pre">w2v_name_or_path</span></span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.w2v_name_or_path" title="Link to this definition"></a></dt>
+<dd><p>path to the word embedding dump file or the
+unique name that can be used to load the
+embedding from some platform (i.e.,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code>.)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.w2v">
+<span class="sig-name descname"><span class="pre">w2v</span></span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.w2v" title="Link to this definition"></a></dt>
+<dd><p>core word embedding object. Specific type depends on which
+embedding class is used as the core.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding._tokenizer">
+<span class="sig-name descname"><span class="pre">_tokenizer</span></span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding._tokenizer" title="Link to this definition"></a></dt>
+<dd><p>the tokenizer used for preprocessing texts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokenizers.Tokenizer</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsDType</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SupportsIndex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">SupportsIndex</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_DTypeDict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.dtype" title="Link to this definition"></a></dt>
+<dd><p>returns the (numpy) data type of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the (numpy) data type of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.get_id" title="Link to this definition"></a></dt>
+<dd><p>get index of given token, based on the tokenizer embedded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input token</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>index of the given token. it returns None if it is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.get_vector">
+<span class="sig-name descname"><span class="pre">get_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.get_vector" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vector for given word</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input single word</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vector corresponding to the word</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.get_vectors">
+<span class="sig-name descname"><span class="pre">get_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.get_vectors" title="Link to this definition"></a></dt>
+<dd><p>get an embedding vectors for given words</p>
+<p>it internally calls __getitem__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word</strong> – input words</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>word embedding vectors corresponding to the words</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="t2c.word_embeddings.WordEmbedding.n_components">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#t2c.word_embeddings.WordEmbedding.n_components" title="Link to this definition"></a></dt>
+<dd><p>returns the dimensionality of the word embedding vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dimensionality of the word embedding vectors</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.word_embeddings.gensim2hdf">
+<span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">gensim2hdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w2v_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_glove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#t2c.word_embeddings.gensim2hdf" title="Link to this definition"></a></dt>
+<dd><p>converts word-embedding into h5py file formats</p>
+<p>it converts word-embedding files that are compatible with <cite>gensim</cite> models
+into the h5py file format (and separate lookup table for tokens in pickle binary)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>w2v_path</strong> – path to the word embedding file to be converted</p></li>
+<li><p><strong>db_path</strong> – path the converted files saved</p></li>
+<li><p><strong>binary</strong> – indicates whether the origin file is binary file (True) or text (False)</p></li>
+<li><p><strong>is_glove</strong> – indicates whether the origin file is glove file (True / no header)
+or typical gensim keyedvector file (False / header)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.word_embeddings.load_word_embs">
+<span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">load_word_embs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tokenizer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gensim_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_glove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><span class="pre">WordEmbedding</span></a></span></span><a class="headerlink" href="#t2c.word_embeddings.load_word_embs" title="Link to this definition"></a></dt>
+<dd><p>loads the word embedding file to the word embedding objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_or_name</strong> – path to the word embedding dump file or the
+unique name that can be used to load the
+embedding from some platform (i.e.,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code>.)</p></li>
+<li><p><strong>tokenizer</strong> – the tokenizer used for preprocessing texts.</p></li>
+<li><p><strong>gensim_model</strong> – True if the model is compatible with <code class="xref py py-obj docutils literal notranslate"><span class="pre">gensim</span></code>.
+False if it is either for <code class="xref py py-obj docutils literal notranslate"><span class="pre">gloves</span></code> or
+<a class="reference internal" href="#t2c.word_embeddings.Word2VecLookup" title="t2c.word_embeddings.Word2VecLookup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Word2VecLookup</span></code></a>.</p></li>
+<li><p><strong>is_glove</strong> – indicates whether the source file is saved in <a class="reference external" href="https://nlp.stanford.edu/projects/glove/">GloVe</a>
+format.</p></li>
+<li><p><strong>binary</strong> – indicates whether the source file is stored in binary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a instance of <a class="reference internal" href="#t2c.word_embeddings.WordEmbedding" title="t2c.word_embeddings.WordEmbedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t2c.word_embeddings.WordEmbedding</span></code></a> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="t2c.word_embeddings.main">
+<span class="sig-prename descclassname"><span class="pre">t2c.word_embeddings.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#t2c.word_embeddings.main" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-t2c">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-t2c" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="t2c" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jaehun Kim.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
